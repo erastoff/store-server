@@ -1,0 +1,78 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$MDHGiVS9QgaDr16i9NU9NZ$SdcAb+1Mkt5eAYIRhmQsFVCcWYWie38KjaMWmyfGADY=",
+      "last_login": "2023-08-08T18:41:48.661Z",
+      "is_superuser": true,
+      "username": "erast",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2023-08-06T10:40:43.977Z",
+      "image": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$hmTSKPrzJT9ad8GSTWvIkP$rGudLm7/1JVEEPeJwNW+RrWXf/pvsi9RJbnOdRL/twE=",
+      "last_login": "2023-08-10T17:15:09.633Z",
+      "is_superuser": false,
+      "username": "user1",
+      "first_name": "Yura",
+      "last_name": "Erastov",
+      "email": "user1@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2023-08-06T10:47:05.118Z",
+      "image": "users_images/photo_2023-05-15_11-50-20.jpg",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gn3GU5Siz3ofJrBEeWPmd7$21PhlOdWJyCCikYoxQMiOq4dI4yrSxmbvv+EOguSIk8=",
+      "last_login": "2023-08-08T18:48:31.205Z",
+      "is_superuser": false,
+      "username": "user2",
+      "first_name": "Artem",
+      "last_name": "Balabashin",
+      "email": "user2@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2023-08-06T12:18:22.029Z",
+      "image": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 7,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$uz515x5filBV8xRWeLvjHf$Nd3QK0iYRa98qSY6H7R0LfvhiVZ+QdJzFU2tBjtHx88=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "user3",
+      "first_name": "Ruslan",
+      "last_name": "Suschevsky",
+      "email": "user3@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2023-08-06T16:30:11.850Z",
+      "image": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]
