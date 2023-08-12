@@ -3,26 +3,33 @@ from django.contrib import auth, messages
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView, UpdateView
+from django.contrib.auth.views import LoginView
 
 from products.models import Basket
 from users.models import User
 from users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
 
 
-def login(request):
-    if request.method == "POST":
-        form = UserLoginForm(data=request.POST)
-        if form.is_valid():
-            username = request.POST["username"]
-            password = request.POST["password"]
-            user = auth.authenticate(username=username, password=password)
-            if user:
-                auth.login(request, user)
-                return HttpResponseRedirect(reverse("index"))
-    else:
-        form = UserLoginForm()
-    context = {"form": form}
-    return render(request, "users/login.html", context)
+class UserLoginView(LoginView):
+    template_name = "users/login.html"
+    form_class = UserLoginForm
+    #     redirect path specified in settings.py
+
+
+# def login(request):
+#     if request.method == "POST":
+#         form = UserLoginForm(data=request.POST)
+#         if form.is_valid():
+#             username = request.POST["username"]
+#             password = request.POST["password"]
+#             user = auth.authenticate(username=username, password=password)
+#             if user:
+#                 auth.login(request, user)
+#                 return HttpResponseRedirect(reverse("index"))
+#     else:
+#         form = UserLoginForm()
+#     context = {"form": form}
+#     return render(request, "users/login.html", context)
 
 
 class UserRegistrationView(CreateView):
@@ -105,6 +112,7 @@ class UserProfileView(UpdateView):
 #     return render(request, "users/profile.html", context)
 
 
-def logout(request):
-    auth.logout(request)
-    return HttpResponseRedirect(reverse("index"))
+# LogoutView imported directly in urls.py
+# def logout(request):
+#     auth.logout(request)
+#     return HttpResponseRedirect(reverse("index"))
