@@ -19,11 +19,12 @@ from django.conf.urls.static import static  # imports for media adding
 from django.conf import settings
 
 
-from products.views import index, products
+from products.views import IndexView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", index, name="index"),
+    # path("", index, name="index"), # FBV
+    path("", IndexView.as_view(), name="index"),  # CBV
     path("products/", include("products.urls", namespace="products")),
     path("users/", include("users.urls", namespace="users")),
 ]
