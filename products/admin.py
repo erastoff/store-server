@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from products.models import Basket, Product, ProductCategory
 
-# admin.site.register(Product) # instead of registration of model we are redefine class ModelAdmin
+
 admin.site.register(ProductCategory)
 
 

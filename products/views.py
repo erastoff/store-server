@@ -5,7 +5,6 @@ from django.views.generic.list import ListView
 
 from common.views import TitleMixin
 from products.models import Basket, Product, ProductCategory
-from users.models import User
 
 # Create your views here.
 # функции = контроллеры = вьюхи = обработка запроса
@@ -14,11 +13,6 @@ from users.models import User
 class IndexView(TitleMixin, TemplateView):
     template_name = "products/index.html"
     title = "Store"
-
-
-# def index(request):
-#     context = {"title": "Store"}
-#     return render(request, "products/index.html", context)
 
 
 class ProductsListView(TitleMixin, ListView):
@@ -38,24 +32,6 @@ class ProductsListView(TitleMixin, ListView):
         return context
 
 
-# def products(request, category_id=None, page_number=1):
-#     products = (
-#         Product.objects.filter(category_id=category_id)
-#         if category_id
-#         else Product.objects.all()
-#     )
-#     per_page = 3
-#     paginator = Paginator(products, per_page)
-#     products_paginator = paginator.page(page_number)
-#
-#     context = {
-#         "title": "Store - Каталог",
-#         "categories": ProductCategory.objects.all(),
-#         "products": products_paginator,
-#     }
-#     return render(request, "products/products.html", context)
-
-
 @login_required
 def basket_add(request, product_id):
     product = Product.objects.get(id=product_id)
@@ -68,7 +44,6 @@ def basket_add(request, product_id):
         basket.quantity += 1
         basket.save()
     return HttpResponseRedirect(request.META["HTTP_REFERER"])
-    # return HttpResponseRedirect(request.path)
 
 
 @login_required
