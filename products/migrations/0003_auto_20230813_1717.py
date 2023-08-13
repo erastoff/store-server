@@ -4,18 +4,17 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('products', '0002_basket'),
+        ("products", "0002_basket"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='product',
-            options={'verbose_name': 'product', 'verbose_name_plural': 'products'},
+            name="product",
+            options={"verbose_name": "product", "verbose_name_plural": "products"},
         ),
         migrations.AlterModelOptions(
-            name='productcategory',
-            options={'verbose_name': 'category', 'verbose_name_plural': 'categories'},
+            name="productcategory",
+            options={"verbose_name": "category", "verbose_name_plural": "categories"},
         ),
     ]
