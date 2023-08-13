@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+DOMAIN_NAME = "http://localhost:8000"
+
 
 # Application definition
 
@@ -64,6 +66,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "products.context_processors.baskets",
             ],
         },
     },
@@ -134,3 +137,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "users.User"
 LOGIN_URL = "/users/login/"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
+
+# Sending emails
+
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend" # Sending messages via console
+EMAIL_HOST = "smtp.yandex.com"
+EMAIL_PORT = 465
+EMAIL_HOST_USER = "server5tore@yandex.ru"
+EMAIL_HOST_PASSWORD = "ickzujdmwgmvczmy"
+EMAIL_USE_SSL = True
