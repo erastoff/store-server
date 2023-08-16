@@ -4,6 +4,7 @@ from django.test import TestCase
 from django.urls import reverse
 
 from products.models import Product, ProductCategory
+from products.views import ProductsListView
 
 
 class IndexViewTestCase(TestCase):
@@ -26,16 +27,10 @@ class ProductsListViewTestCase(TestCase):
         path = reverse("products:index")
         response = self.client.get(path)
 
-        # products = Product.objects.all()
-        # print(response.context_data["object_list"])
-        # print(products[:3])
-        # print(list(response.context_data["object_list"]) == list(products[:3]))
-        # self.assertEqual(response.status_code, HTTPStatus.OK)
-        # self.assertEqual(response.context_data["title"], "Store - Каталог")
-        # self.assertTemplateUsed(response, "products/products.html")
         self._common_tests(response)
         self.assertEqual(
-            list(response.context_data["object_list"]), list(self.products[:3])
+            list(response.context_data["object_list"]),
+            list(self.products[: ProductsListView.paginate_by]),
         )
 
     def test_list_with_category(self):
@@ -43,10 +38,6 @@ class ProductsListViewTestCase(TestCase):
         path = reverse("products:category", kwargs={"category_id": category.id})
         response = self.client.get(path)
 
-        # products = Product.objects.all()
-        # self.assertEqual(response.status_code, HTTPStatus.OK)
-        # self.assertEqual(response.context_data["title"], "Store - Каталог")
-        # self.assertTemplateUsed(response, "products/products.html")
         self._common_tests(response)
         self.assertEqual(
             list(response.context_data["object_list"]),
