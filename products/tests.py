@@ -30,9 +30,10 @@ class ProductsListViewTestCase(TestCase):
         # print(response.context_data["object_list"])
         # print(products[:3])
         # print(list(response.context_data["object_list"]) == list(products[:3]))
-        self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertEqual(response.context_data["title"], "Store - Каталог")
-        self.assertTemplateUsed(response, "products/products.html")
+        # self.assertEqual(response.status_code, HTTPStatus.OK)
+        # self.assertEqual(response.context_data["title"], "Store - Каталог")
+        # self.assertTemplateUsed(response, "products/products.html")
+        self._common_tests(response)
         self.assertEqual(
             list(response.context_data["object_list"]), list(self.products[:3])
         )
@@ -43,10 +44,16 @@ class ProductsListViewTestCase(TestCase):
         response = self.client.get(path)
 
         # products = Product.objects.all()
-        self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertEqual(response.context_data["title"], "Store - Каталог")
-        self.assertTemplateUsed(response, "products/products.html")
+        # self.assertEqual(response.status_code, HTTPStatus.OK)
+        # self.assertEqual(response.context_data["title"], "Store - Каталог")
+        # self.assertTemplateUsed(response, "products/products.html")
+        self._common_tests(response)
         self.assertEqual(
             list(response.context_data["object_list"]),
             list(self.products.filter(category_id=category.id)),
         )
+
+    def _common_tests(self, response):
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertEqual(response.context_data["title"], "Store - Каталог")
+        self.assertTemplateUsed(response, "products/products.html")
