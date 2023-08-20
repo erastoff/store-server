@@ -172,12 +172,12 @@ LOGOUT_REDIRECT_URL = "/"
 
 # Sending emails
 
-# EMAIL_HOST = "smtp.yandex.com"
-# EMAIL_PORT = 465
-# EMAIL_HOST_USER = "server5tore@yandex.ru"
-# EMAIL_HOST_PASSWORD = "ickzujdmwgmvczmy"
-# EMAIL_USE_SSL = True
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_HOST = "smtp.yandex.com"
+EMAIL_PORT = 465
+EMAIL_HOST_USER = "server5tore@yandex.ru"
+EMAIL_HOST_PASSWORD = "ickzujdmwgmvczmy"
+EMAIL_USE_SSL = True
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # OAuth
 AUTHENTICATION_BACKENDS = [
@@ -193,3 +193,7 @@ SOCIALACCOUNT_PROVIDERS = {
         ],
     }
 }
+
+# Celery
+CELERY_BROKER_URL = "redis://127.0.0.1:6379"
+CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379"
