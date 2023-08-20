@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import HttpResponseRedirect
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
+from django.views.decorators.cache import cache_page
 
 from common.views import TitleMixin
 from products.models import Basket, Product, ProductCategory
@@ -15,6 +16,7 @@ class IndexView(TitleMixin, TemplateView):
     title = "Store"
 
 
+# @cache_page(30)
 class ProductsListView(TitleMixin, ListView):
     model = Product
     template_name = "products/products.html"
