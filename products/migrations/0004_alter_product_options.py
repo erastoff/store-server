@@ -4,14 +4,17 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('products', '0003_auto_20230813_1717'),
+        ("products", "0003_auto_20230813_1717"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='product',
-            options={'ordering': ['id'], 'verbose_name': 'product', 'verbose_name_plural': 'products'},
+            name="product",
+            options={
+                "ordering": ["id"],
+                "verbose_name": "product",
+                "verbose_name_plural": "products",
+            },
         ),
     ]
