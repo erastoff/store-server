@@ -25,9 +25,9 @@ SECRET_KEY = "django-insecure-lse!o%x6c9)#nppe5&bvaix)*v2vpfbzfj@mw05g-@c-ie^i$!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
-DOMAIN_NAME = "http://localhost:8000"
+DOMAIN_NAME = "http://127.0.0.1:8000"
 
 
 # Application definition
@@ -182,6 +182,7 @@ EMAIL_USE_SSL = True
 # EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # OAuth
+
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
@@ -197,5 +198,11 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 # Celery
+
 CELERY_BROKER_URL = "redis://127.0.0.1:6379"
 CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379"
+
+# Stripe
+
+STRIPE_PUBLIC_KEY = "pk_test_51NhwMoEHzajkMacgKP8C0RlNQCsWQN0exU2iC0hWt3FVgIjQ9yvGFhtORZtQiqzS3bc0f5drWF2hsZWwk3qiw9WR00Q6tRky5X"
+STRIPE_SECRET_KEY = "sk_test_51NhwMoEHzajkMacgaLMrxWuzbSbUYtMRsb3pyzd6b2fzAWrLfpE2OZyMuM2zTKEeo9vZwTmDGjn7fdanQcbbW2cb00iziOg8Op"
