@@ -11,6 +11,7 @@ from django.conf import settings
 from common.views import TitleMixin
 from orders.forms import OrderForm
 from products.views import Basket
+from orders.models import Order
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -36,7 +37,7 @@ class OrderCreateView(TitleMixin, CreateView):
 
         checkout_session = stripe.checkout.Session.create(
             line_items=baskets.stripe_products(),
-            metadata={"order_id": self.object},
+            metadata={"order_id": self.object.id},
             mode="payment",
             success_url="{}{}".format(
                 settings.DOMAIN_NAME, reverse("orders:order_success")
@@ -82,7 +83,12 @@ def stripe_webhook_view(request):
         # fulfill_order(line_items)
 
         session = event["data"]["object"]
-        fulfill_order(session)
+        # fulfill_order(session)
+
+        metadata = session.metadata
+        # line_items = session.line_items  -- в доке stripe
+        # Fulfill the purchase...
+        fulfill_order(metadata)
 
     # Passed signature verification
     return HttpResponse(status=200)
@@ -92,6 +98,14 @@ def stripe_webhook_view(request):
 #     print("Fulfilling order")
 
 
-def fulfill_order(session):
-    order_id = int(session.metadata.order_id)
-    print("Fulfilling order")
+# def fulfill_order(session):
+#     order_id = int(session.metadata.order_id)
+#     order = Order.objects.get(id=order_id)
+#     order.update_after_payment()
+
+
+def fulfill_order(metadata):
+    order_id = int(metadata.order_id)
+    # print(f"order_id - {order_id}")
+    order = Order.objects.get(id=order_id)
+    order.update_after_payment()
