@@ -36,6 +36,7 @@ urlpatterns = [
     path("orders/", include("orders.urls", namespace="orders")),
     path("webhook/stripe/", stripe_webhook_view, name="stripe_webhook"),
     path("", include(static_urlpatterns)),
+    path("api/", include("api.urls", namespace="api")),
 ]
 
 

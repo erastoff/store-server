@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django.contrib.humanize",
     "django_extensions",
+    "rest_framework",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
@@ -76,6 +77,7 @@ INSTALLED_APPS = [
     "products",
     "orders",
     "users",
+    "api",
 ]
 
 MIDDLEWARE = [
@@ -245,3 +247,10 @@ CELERY_RESULT_BACKEND = f"redis://{REDIS_HOST}:{REDIS_PORT}"
 STRIPE_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY")
 STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
 STRIPE_WEBHOOK_SECRET = env("STRIPE_WEBHOOK_SECRET")
+
+# Django REST Framework
+
+REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    "PAGE_SIZE": 3,
+}
