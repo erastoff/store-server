@@ -25,7 +25,7 @@ class Product(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=8, decimal_places=2)
     quantity = models.PositiveIntegerField(default=0)
-    image = models.ImageField(upload_to="products_images")
+    image = models.ImageField(upload_to="products_images", null=True, blank=True)
     stripe_product_price_id = models.CharField(max_length=128, null=True, blank=True)
     category = models.ForeignKey(to=ProductCategory, on_delete=models.CASCADE)
 
@@ -105,4 +105,5 @@ class Basket(models.Model):
             "price": float(self.product.price),
             "sum": float(self.sum()),
         }
+        print("QUANTITY_OF_POSITIONS:    ", basket_item["quantity"])
         return basket_item
