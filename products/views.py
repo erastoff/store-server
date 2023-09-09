@@ -46,13 +46,10 @@ def basket_add(request, product_id):
         print(basket)
 
     if not baskets.exists():
-        print("NOT EXISTS")
         Basket.objects.create(user=request.user, product=product, quantity=1)
     else:
         basket = baskets.first()
-        print("CURRENT_BASKET: ", basket)
         basket.quantity += 1
-        print("CURRENT_BASKET_QUANTITY: ", basket.quantity)
         basket.save()
     return HttpResponseRedirect(request.META["HTTP_REFERER"])
 
