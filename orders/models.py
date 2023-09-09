@@ -30,10 +30,13 @@ class Order(models.Model):
 
     def update_after_payment(self):
         baskets = Basket.objects.filter(user=self.initiator)
+        for basket in baskets:
+            print("BASKET:   ", basket)
         self.status = self.PAID
         self.basket_history = {
             "purchased_items": [basket.de_json() for basket in baskets],
             "total_sum": float(baskets.total_sum()),
         }
+        print("BASKET_HISTORY_QUANTITY:    ", self.basket_history["purchased_items"])
         baskets.delete()
         self.save()

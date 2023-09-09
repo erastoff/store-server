@@ -10,9 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-import environ
-
 from pathlib import Path
+
+import environ
 
 env = environ.Env(
     # set casting, default value
@@ -68,6 +68,8 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django.contrib.humanize",
     "django_extensions",
+    "rest_framework",
+    "rest_framework.authtoken",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
@@ -76,6 +78,7 @@ INSTALLED_APPS = [
     "products",
     "orders",
     "users",
+    "api",
 ]
 
 MIDDLEWARE = [
@@ -245,3 +248,16 @@ CELERY_RESULT_BACKEND = f"redis://{REDIS_HOST}:{REDIS_PORT}"
 STRIPE_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY")
 STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
 STRIPE_WEBHOOK_SECRET = env("STRIPE_WEBHOOK_SECRET")
+
+# Django REST Framework
+
+REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    "PAGE_SIZE": 3,
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication",
+    ],
+    # "DEFAULT_PERMISSION_CLASSES": [
+    #     "rest_framework.permissions.IsAuthenticated",
+    # ],
+}

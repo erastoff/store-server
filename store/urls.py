@@ -18,6 +18,7 @@ from django.conf.urls.static import static  # imports for media adding
 from django.contrib import admin
 from django.urls import include, path, re_path
 from django.views.static import serve
+from rest_framework.authtoken import views
 
 from orders.views import stripe_webhook_view
 from products.views import IndexView
@@ -36,6 +37,8 @@ urlpatterns = [
     path("orders/", include("orders.urls", namespace="orders")),
     path("webhook/stripe/", stripe_webhook_view, name="stripe_webhook"),
     path("", include(static_urlpatterns)),
+    path("api/", include("api.urls", namespace="api")),
+    path("api-token-auth/", views.obtain_auth_token),
 ]
 
 
