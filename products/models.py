@@ -107,3 +107,20 @@ class Basket(models.Model):
         }
         print("QUANTITY_OF_POSITIONS:    ", basket_item["quantity"])
         return basket_item
+
+    @classmethod
+    def create_or_update(cls, product_id, user):
+        baskets = Basket.objects.filter(user=user, product_id=product_id)
+        for basket in baskets:
+            print(basket)
+
+        if not baskets.exists():
+            obj = Basket.objects.create(user=user, product_id=product_id, quantity=1)
+            is_created = True
+            return obj, is_created
+        else:
+            basket = baskets.first()
+            basket.quantity += 1
+            basket.save()
+            is_created = False
+            return basket, is_created
