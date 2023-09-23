@@ -24,6 +24,12 @@ class UserRegistrationView(TitleMixin, SuccessMessageMixin, CreateView):
     success_message = "Поздравляем! Вы успешно зарегистрированы!"
     title = "Store - Регистрация"
 
+    # added form_invalid method to print form.errors in console
+    # def form_invalid(self, form):
+    #     field_errors = form.errors.items()
+    #     print(field_errors)
+    #     return super().form_invalid(form)
+
 
 class UserProfileView(TitleMixin, UpdateView):
     model = User
