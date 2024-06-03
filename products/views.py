@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.core.cache import cache
 from django.shortcuts import HttpResponseRedirect
+from django.urls import reverse_lazy
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 
@@ -49,3 +50,11 @@ def basket_remove(request, basket_id):
     basket = Basket.objects.get(id=basket_id)
     basket.delete()
     return HttpResponseRedirect(request.META["HTTP_REFERER"])
+
+
+class BasketsListView(TitleMixin, ListView):
+    model = Basket
+    template_name = "products/baskets_sep.html"
+
+    def get_success_url(self):
+        return reverse_lazy("users:profile", args=(self.object.id,))
